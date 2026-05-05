@@ -1,0 +1,29 @@
+# Dependencias
+node_modules/
+npm-debug.log
+yarn-error.log
+yarn-debug.log
+
+# Entorno (¡Crítico no subir las variables de entorno!)
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de logs
+logs
+*.log
+npm-debug.log*
+
+# Cobertura de tests
+coverage/
+.nyc_output
+
+# Build/Transpilados (por si acaso en un futuro se usa TS)
+dist/
+build/
