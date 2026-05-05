@@ -1,0 +1,19 @@
+{
+  "name": "arca-backend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Arca LTDA - Sistema de Gestion Humana (microservicios)",
+  "scripts": {
+    "dev": "concurrently -n personal,contratos,vacaciones,pagos,gateway -c blue,green,yellow,magenta,cyan \"npm:dev:*\"",
+    "dev:personal": "npm --prefix personal-service run dev",
+    "dev:contratos": "npm --prefix contratos-service run dev",
+    "dev:vacaciones": "npm --prefix vacaciones-service run dev",
+    "dev:pagos": "npm --prefix pagos-service run dev",
+    "dev:gateway": "npm --prefix api-gateway run dev",
+    "migrate:all": "npm --prefix personal-service run migrate && npm --prefix contratos-service run migrate && npm --prefix vacaciones-service run migrate && npm --prefix pagos-service run migrate",
+    "generate:all": "npm --prefix personal-service run generate && npm --prefix contratos-service run generate && npm --prefix vacaciones-service run generate && npm --prefix pagos-service run generate"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

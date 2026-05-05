@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Contrato {
+  id            Int      @id @default(autoincrement())
+  funcionarioId Int
+  fechaIngreso  DateTime
+  salario       Decimal  @db.Decimal(12, 2)
+  periodoPrueba Int
+  template      String   @default("default")
+  documento     String   @db.Text
+  createdAt     DateTime @default(now())
+}

@@ -1,16 +1,15 @@
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const routes = require('./routes');
+
+const vacacionesRoutes = require('./routes/vacaciones.routes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/', routes);
+app.get('/health', (req, res) => res.json({ status: 'ok', service: 'vacaciones' }));
+app.use('/vacaciones', vacacionesRoutes);
 
-const PORT = process.env.PORT_VACACIONES || 3002;
-app.listen(PORT, () => {
-    console.log('vacaciones-service running on port ' + PORT);
-});
+const PORT = process.env.PORT || 3003;
+app.listen(PORT, () => console.log(`vacaciones-service en puerto ${PORT}`));

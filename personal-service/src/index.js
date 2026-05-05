@@ -1,16 +1,15 @@
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const routes = require('./routes');
+
+const funcionariosRoutes = require('./routes/funcionarios.routes');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/', routes);
+app.get('/health', (req, res) => res.json({ status: 'ok', service: 'personal' }));
+app.use('/funcionarios', funcionariosRoutes);
 
-const PORT = process.env.PORT_PERSONAL || 3001;
-app.listen(PORT, () => {
-    console.log('personal-service running on port ' + PORT);
-});
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => console.log(`personal-service en puerto ${PORT}`));

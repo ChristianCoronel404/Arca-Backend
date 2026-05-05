@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Funcionario {
+  id           Int      @id @default(autoincrement())
+  ci           String   @unique
+  nombre       String
+  apellido     String
+  fechaIngreso DateTime
+  area         String
+  cargo        String
+  remuneracion Decimal  @db.Decimal(12, 2)
+  activo       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
